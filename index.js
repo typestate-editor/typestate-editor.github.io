@@ -1283,7 +1283,7 @@
             </ul>
           </div>
         </div>
-        <span class="title">Typestate</span>
+        <span class="title">Typestate Editor</span>
         <div>
           <button id="examples-button">Examples</button>
           <div id="examples-menu" class="mdc-menu mdc-menu-surface">
