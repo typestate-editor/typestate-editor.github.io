@@ -1,0 +1,9 @@
+.cache
+.next
+.yarn/*
+!.yarn/releases
+!.yarn/sdks
+node_modules
+out
+*.log
+*.txt

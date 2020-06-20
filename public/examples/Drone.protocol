@@ -1,0 +1,19 @@
+typestate DroneProtocol {
+
+  Idle = {
+    void takeOff(): Hovering,
+    void shutDown(): end
+  }
+
+  Hovering = {
+    void land(): Idle,
+    void moveTo(double, double): Flying
+  }
+
+  Flying = {
+    void moveTo(double, double): Flying,
+    void stop(): Hovering,
+    Boolean hasArrived(): <True: Hovering, False: Flying>
+  }
+
+}

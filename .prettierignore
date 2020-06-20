@@ -1,0 +1,9 @@
+.cache
+.next
+.vscode
+.yarn
+node_modules
+out
+public
+.pnp.js
+package.json
