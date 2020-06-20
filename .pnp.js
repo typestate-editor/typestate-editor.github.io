@@ -70,10 +70,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:4.0.0-alpha.56"
       ],
       [
-        "@monaco-editor/react",
-        "virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:3.3.1"
-      ],
-      [
         "@types/jsoneditor",
         "npm:8.6.0"
       ],
@@ -152,10 +148,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       [
         "typescript",
         "patch:typescript@npm%3A3.9.5#builtin<compat/typescript>::version=3.9.5&hash=0ea415"
-      ],
-      [
-        "vis-network",
-        "virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:7.7.0"
       ]
     ],
     "locationBlacklistData": [
@@ -175,7 +167,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@material-ui/core", "virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:4.10.2"],
             ["@material-ui/icons", "virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:4.9.1"],
             ["@material-ui/lab", "virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:4.0.0-alpha.56"],
-            ["@monaco-editor/react", "virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:3.3.1"],
             ["@types/jsoneditor", "npm:8.6.0"],
             ["@types/node", "npm:14.0.13"],
             ["@types/react", "npm:16.9.38"],
@@ -195,8 +186,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:16.13.1"],
             ["react-async", "virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:10.0.1"],
             ["react-dom", "virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:16.13.1"],
-            ["typescript", "patch:typescript@npm%3A3.9.5#builtin<compat/typescript>::version=3.9.5&hash=0ea415"],
-            ["vis-network", "virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:7.7.0"]
+            ["typescript", "patch:typescript@npm%3A3.9.5#builtin<compat/typescript>::version=3.9.5&hash=0ea415"]
           ],
           "linkType": "SOFT",
         }]
@@ -221,13 +211,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@ampproject/toolbox-runtime-version", "npm:2.5.1"],
             ["@ampproject/toolbox-script-csp", "npm:2.3.0"],
             ["@ampproject/toolbox-validator-rules", "npm:2.3.0"],
+            ["cross-fetch", "npm:3.0.5"],
             ["cssnano", "npm:4.1.10"],
+            ["dom-serializer", "npm:1.0.1"],
             ["domhandler", "npm:3.0.0"],
             ["domutils", "npm:2.1.0"],
             ["htmlparser2", "npm:4.1.0"],
             ["jimp", null],
             ["lru-cache", "npm:5.1.1"],
             ["normalize-html-whitespace", "npm:1.0.0"],
+            ["postcss", "npm:7.0.29"],
             ["postcss-safe-parser", "npm:4.0.2"],
             ["probe-image-size", null],
             ["terser", "npm:4.6.13"]
@@ -3018,25 +3011,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
-      ["@monaco-editor/react", [
-        ["virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:3.3.1", {
-          "packageLocation": "./.yarn/$$virtual/@monaco-editor-react-virtual-b4b2c0620d/4/AppData/Local/Yarn/Berry/cache/@monaco-editor-react-npm-3.3.1-41d21997a9-3.zip/node_modules/@monaco-editor/react/",
-          "packageDependencies": [
-            ["@monaco-editor/react", "virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:3.3.1"],
-            ["monaco-editor", "npm:0.20.0"],
-            ["prop-types", null],
-            ["react", "npm:16.13.1"],
-            ["react-dom", "virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:16.13.1"]
-          ],
-          "packagePeers": [
-            "monaco-editor",
-            "prop-types",
-            "react",
-            "react-dom"
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
       ["@next/react-dev-overlay", [
         ["virtual:c68b1437581f18f5883ec745e684024fbf0374053a5121c3189ad22e17b3fa15ac7e41450e292d20b7caa7f2699b5c0bee0ab47386c9273778ba2abed6e83dc8#npm:9.4.4", {
           "packageLocation": "./.yarn/$$virtual/@next-react-dev-overlay-virtual-28761c0e4c/4/AppData/Local/Yarn/Berry/cache/@next-react-dev-overlay-npm-9.4.4-1316ee6bad-3.zip/node_modules/@next/react-dev-overlay/",
@@ -5326,6 +5300,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["whatwg-fetch", "npm:3.0.0"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:3.0.5", {
+          "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/cross-fetch-npm-3.0.5-7ab5c1d55f-3.zip/node_modules/cross-fetch/",
+          "packageDependencies": [
+            ["cross-fetch", "npm:3.0.5"],
+            ["node-fetch", "npm:2.6.0"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["cross-spawn", [
@@ -5858,6 +5840,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["dom-serializer", "npm:0.2.2"],
             ["domelementtype", "npm:2.0.1"],
+            ["entities", "npm:2.0.3"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:1.0.1", {
+          "packageLocation": "../../../AppData/Local/Yarn/Berry/cache/dom-serializer-npm-1.0.1-b191d93707-3.zip/node_modules/dom-serializer/",
+          "packageDependencies": [
+            ["dom-serializer", "npm:1.0.1"],
+            ["domelementtype", "npm:2.0.1"],
+            ["domhandler", "npm:3.0.0"],
             ["entities", "npm:2.0.3"]
           ],
           "linkType": "HARD",
@@ -12268,7 +12260,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@material-ui/core", "virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:4.10.2"],
             ["@material-ui/icons", "virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:4.9.1"],
             ["@material-ui/lab", "virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:4.0.0-alpha.56"],
-            ["@monaco-editor/react", "virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:3.3.1"],
             ["@types/jsoneditor", "npm:8.6.0"],
             ["@types/node", "npm:14.0.13"],
             ["@types/react", "npm:16.9.38"],
@@ -12288,8 +12279,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:16.13.1"],
             ["react-async", "virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:10.0.1"],
             ["react-dom", "virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:16.13.1"],
-            ["typescript", "patch:typescript@npm%3A3.9.5#builtin<compat/typescript>::version=3.9.5&hash=0ea415"],
-            ["vis-network", "virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:7.7.0"]
+            ["typescript", "patch:typescript@npm%3A3.9.5#builtin<compat/typescript>::version=3.9.5&hash=0ea415"]
           ],
           "linkType": "SOFT",
         }]
@@ -12588,33 +12578,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["assert-plus", "npm:1.0.0"],
             ["core-util-is", "npm:1.0.2"],
             ["extsprintf", "npm:1.3.0"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["vis-network", [
-        ["virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:7.7.0", {
-          "packageLocation": "./.yarn/unplugged/vis-network-virtual-0dfb898383/node_modules/vis-network/",
-          "packageDependencies": [
-            ["vis-network", "virtual:a2e4bcda56d2b07972fc5ead47fcd5048c3e30187e1572267318d14e2300669f5163dc5ab9a480c7348d7889e75fdf0dad56a3f02613db863f4ebd734fe42595#npm:7.7.0"],
-            ["@egjs/hammerjs", null],
-            ["component-emitter", null],
-            ["keycharm", null],
-            ["moment", null],
-            ["timsort", null],
-            ["uuid", null],
-            ["vis-data", null],
-            ["vis-util", null]
-          ],
-          "packagePeers": [
-            "component-emitter",
-            "@egjs/hammerjs",
-            "keycharm",
-            "moment",
-            "timsort",
-            "uuid",
-            "vis-data",
-            "vis-util"
           ],
           "linkType": "HARD",
         }]

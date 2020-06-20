@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Automaton } from "../../tool/automaton_types";
-import type vis from "vis-network";
 import { useCopy } from "../utils";
 import MiniBar from "../mini-bar";
 import { fixAutomaton } from "../utils";
@@ -14,7 +13,7 @@ function createNetwork(automaton: Automaton, container: HTMLDivElement) {
 
   const invisible = ":invisible:";
 
-  const nodes: vis.Node[] = [
+  const nodes: any /*: vis.Node[]*/ = [
     {
       id: invisible,
       size: 0,
@@ -26,7 +25,7 @@ function createNetwork(automaton: Automaton, container: HTMLDivElement) {
     },
   ];
 
-  const edges: vis.Edge[] = [
+  const edges: any /*: vis.Edge[]*/ = [
     {
       from: invisible,
       to: automaton.start,
@@ -73,7 +72,7 @@ function createNetwork(automaton: Automaton, container: HTMLDivElement) {
     });
   }
 
-  const data: { nodes: vis.DataSet; edges: vis.DataSet } = {
+  const data /*: { nodes: vis.DataSet; edges: vis.DataSet }*/ = {
     nodes: new DataSet(nodes),
     edges: new DataSet(edges),
   };
@@ -101,7 +100,7 @@ function createNetwork(automaton: Automaton, container: HTMLDivElement) {
     },
   };
 
-  const network: vis.Network = new Network(container, data, options);
+  const network /*: vis.Network*/ = new Network(container, data, options);
 
   if (location.hash === "#forcewhite") {
     // https://github.com/almende/vis/issues/2292
@@ -149,7 +148,7 @@ export default function AutomatonViewer(props: AutomatonViewerProps) {
   const classes = useStyles();
   const { data } = props;
   const container = useRef<HTMLDivElement>(null);
-  const [network, setNetwork] = useState<vis.Network | null>(null);
+  const [network, setNetwork] = useState<any>(null);
   const copy = useCopy();
 
   useEffect(() => {

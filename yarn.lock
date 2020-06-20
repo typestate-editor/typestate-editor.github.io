@@ -1750,18 +1750,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@monaco-editor/react@npm:^3.3.1":
-  version: 3.3.1
-  resolution: "@monaco-editor/react@npm:3.3.1"
-  peerDependencies:
-    monaco-editor: ^0.20.0
-    prop-types: ^15.7.2
-    react: ^16.8.6
-    react-dom: ^16.8.6
-  checksum: 3/cadfc2f19c358eed9606f395da5b4f26809d7fe69945cf7a35a2024dbd05320e357f94dbea0f1525f12aab2fe9c1bfd244a9824438260f0618197fad3cd6847f
-  languageName: node
-  linkType: hard
-
 "@next/react-dev-overlay@npm:9.4.4":
   version: 9.4.4
   resolution: "@next/react-dev-overlay@npm:9.4.4"
@@ -3765,6 +3753,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cross-fetch@npm:*":
+  version: 3.0.5
+  resolution: "cross-fetch@npm:3.0.5"
+  dependencies:
+    node-fetch: 2.6.0
+  checksum: 3/99f0f4ae222c611bfd45c176e95335ffb4046c662e349afcdcfad8edf9a76cefb68e6dfb6707cddf0ad23d231290346a76d70ba1205f8af4cb335eb52321b4bc
+  languageName: node
+  linkType: hard
+
 "cross-fetch@npm:3.0.4":
   version: 3.0.4
   resolution: "cross-fetch@npm:3.0.4"
@@ -4239,6 +4236,17 @@ __metadata:
     "@babel/runtime": ^7.8.7
     csstype: ^2.6.7
   checksum: 3/266a3f9af7ac882af88418144cb09313141f7ef2db4857454ffa988d7cb15e160e4b4ea0d4ace2264270466052b0f6c9f7ca245e464b80c79b8088eb4b92bf42
+  languageName: node
+  linkType: hard
+
+"dom-serializer@npm:*":
+  version: 1.0.1
+  resolution: "dom-serializer@npm:1.0.1"
+  dependencies:
+    domelementtype: ^2.0.1
+    domhandler: ^3.0.0
+    entities: ^2.0.0
+  checksum: 3/45734411e474813859cde8d5513a5cf424c592a6fd82e97ef1504d277b021aac6ddbfedb88ae683d7f8ff80d5cd7991a5301aefb33a04ae6bec781669e2e5f7b
   languageName: node
   linkType: hard
 
@@ -8174,6 +8182,17 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
+"postcss@npm:*, postcss@npm:7.0.29, postcss@npm:^7.0.0, postcss@npm:^7.0.1, postcss@npm:^7.0.14, postcss@npm:^7.0.16, postcss@npm:^7.0.26, postcss@npm:^7.0.27, postcss@npm:^7.0.5, postcss@npm:^7.0.6":
+  version: 7.0.29
+  resolution: "postcss@npm:7.0.29"
+  dependencies:
+    chalk: ^2.4.2
+    source-map: ^0.6.1
+    supports-color: ^6.1.0
+  checksum: 3/3ed5ba674639565b05d0cedfdb57f8b0ece13f071e03f7e55df4a35b42615111f42b2b983f6265ceb36d372ef0249d19b4ba16caa70b98c94ad67f770b0b56d4
+  languageName: node
+  linkType: hard
+
 "postcss@npm:7.0.21":
   version: 7.0.21
   resolution: "postcss@npm:7.0.21"
@@ -8182,17 +8201,6 @@ fsevents@~2.1.2:
     source-map: ^0.6.1
     supports-color: ^6.1.0
   checksum: 3/1c8617c2209480ddf3a460d668e69e3228035add75d7d7588c4122d11c7ae58d8b41e5c7a130c1969f2150c2a5bf5f78c5dcf146bb1bbfaf1ab1163ea7df4cf0
-  languageName: node
-  linkType: hard
-
-"postcss@npm:7.0.29, postcss@npm:^7.0.0, postcss@npm:^7.0.1, postcss@npm:^7.0.14, postcss@npm:^7.0.16, postcss@npm:^7.0.26, postcss@npm:^7.0.27, postcss@npm:^7.0.5, postcss@npm:^7.0.6":
-  version: 7.0.29
-  resolution: "postcss@npm:7.0.29"
-  dependencies:
-    chalk: ^2.4.2
-    source-map: ^0.6.1
-    supports-color: ^6.1.0
-  checksum: 3/3ed5ba674639565b05d0cedfdb57f8b0ece13f071e03f7e55df4a35b42615111f42b2b983f6265ceb36d372ef0249d19b4ba16caa70b98c94ad67f770b0b56d4
   languageName: node
   linkType: hard
 
@@ -10049,7 +10057,6 @@ typescript@^3.9.5:
     "@material-ui/core": ^4.9.14
     "@material-ui/icons": ^4.9.1
     "@material-ui/lab": ^4.0.0-alpha.56
-    "@monaco-editor/react": ^3.3.1
     "@types/jsoneditor": ^8.6.0
     "@types/node": ^14.0.5
     "@types/react": ^16.9.35
@@ -10070,7 +10077,6 @@ typescript@^3.9.5:
     react-async: ^10.0.1
     react-dom: ^16.13.1
     typescript: ^3.9.5
-    vis-network: ^7.7.0
   languageName: unknown
   linkType: soft
 
@@ -10326,22 +10332,6 @@ typescript@^3.9.5:
     core-util-is: 1.0.2
     extsprintf: ^1.2.0
   checksum: 3/38ea80312cb42e5e8b4ac562d108d675b2354a79f8f125d363671f692657461b9181fd26f4fc9acdca433f8afee099cb78058806e1303e6b15b8fb022affba94
-  languageName: node
-  linkType: hard
-
-"vis-network@npm:^7.7.0":
-  version: 7.7.0
-  resolution: "vis-network@npm:7.7.0"
-  peerDependencies:
-    "@egjs/hammerjs": ^2.0.0
-    component-emitter: ^1.3.0
-    keycharm: ^0.2.0 || ^0.3.0
-    moment: ^2.24.0
-    timsort: ^0.3.0
-    uuid: ^3.4.0 || ^7.0.0 || ^8.0.0
-    vis-data: ^6.2.1
-    vis-util: ^3.0.0 || ^4.0.0
-  checksum: 3/457d98ecdb261986edc7feba2557da7cec7bdaaf577ebff7b7125f17d858d09104435bf48e9c90efb8ddfd5a780454f0e9d4ee9b92187f9d8ed0409627fa6f26
   languageName: node
   linkType: hard
 
