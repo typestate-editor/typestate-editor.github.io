@@ -52,14 +52,14 @@ export default () => {
         <div id={navItems[0][1]}></div>
         <Transformer
           title={navItems[0][0]}
-          language="plaintext"
+          language="typestate"
           fn={transforms.view}
           render={renders.view}
         ></Transformer>
         <div id={navItems[1][1]}></div>
         <Transformer
           title={navItems[1][0]}
-          language="plaintext"
+          language="typestate"
           fn={transforms.parse}
           render={renders.parse}
         ></Transformer>

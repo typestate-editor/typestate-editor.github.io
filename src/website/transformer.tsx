@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { ErrorWithLocation } from "../tool/utils";
+import { MonacoLanguages } from "./languages";
 import MiniBar from "./mini-bar";
 import MonacoEditor, { EditorProps } from "./monaco-editor";
 
@@ -31,7 +32,7 @@ const useStyles = makeStyles(theme => ({
 
 export type TransformerProps<T> = {
   title: string;
-  language: "plaintext" | "json";
+  language: MonacoLanguages;
   fn: (text: string) => T;
   render: (result: T) => JSX.Element;
 };

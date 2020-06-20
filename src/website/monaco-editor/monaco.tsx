@@ -1,4 +1,5 @@
 import type MonacoEditorType from "monaco-editor";
+import { registerTypestateLang } from "../languages";
 
 export type MonacoNamespace = typeof MonacoEditorType;
 export type MonacoEditorNamespace = typeof MonacoEditorType.editor;
@@ -57,15 +58,12 @@ class Monaco {
     document.body.appendChild(script);
   }
 
-  private handleMainScriptLoad() {
+  private handleMainScriptLoad = () => {
     document.removeEventListener("monaco_init", this.handleMainScriptLoad);
-    const monaco = getMonaco();
-    if (monaco) {
-      this.deferred.resolve(monaco);
-    } else {
+    if (!this.prepareMonaco()) {
       this.deferred.reject(new Error("Could not load monaco-editor"));
     }
-  }
+  };
 
   private createScript(src?: string) {
     const script = document.createElement("script");
@@ -102,15 +100,24 @@ class Monaco {
     return mainScript;
   }
 
+  private prepareMonaco() {
+    const maybeMonaco = getMonaco();
+    if (maybeMonaco) {
+      try {
+        registerTypestateLang(maybeMonaco);
+        this.deferred.resolve(maybeMonaco);
+      } catch (err) {
+        this.deferred.reject(err);
+      }
+      return true;
+    }
+    return false;
+  }
+
   init() {
     if (!this.isInitialized) {
-      const maybeMonaco = getMonaco();
-      if (maybeMonaco && maybeMonaco.editor) {
-        this.deferred.resolve(maybeMonaco);
-      } else {
-        document.addEventListener("monaco_init", () =>
-          this.handleMainScriptLoad()
-        );
+      if (!this.prepareMonaco()) {
+        document.addEventListener("monaco_init", this.handleMainScriptLoad);
         const mainScript = this.createMainScript();
         const loaderScript = this.createMonacoLoaderScript(mainScript);
         this.injectScripts(loaderScript);

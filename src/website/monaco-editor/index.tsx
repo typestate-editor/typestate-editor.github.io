@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useSnackbar } from "notistack";
 import type MonacoEditorType from "monaco-editor";
+import { MonacoLanguages } from "../languages";
 import MonacoContainer from "./container";
 import monaco, {
   MonacoNamespace,
@@ -39,7 +41,7 @@ const useUpdate = (
 };
 
 export type EditorProps = {
-  language: string;
+  language: MonacoLanguages;
   onReady: (getValue: () => string) => void;
   theme?: string;
   width?: number | string;
@@ -66,6 +68,7 @@ const Editor = ({
   const editorRef = useRef<MonacoEditor>();
   const monacoRef = useRef<MonacoNamespace>();
   const containerRef = useRef<HTMLDivElement>(null);
+  const { enqueueSnackbar } = useSnackbar();
 
   useMount(() => {
     const cancelable = monaco.init();
@@ -74,12 +77,13 @@ const Editor = ({
       .then(
         monaco => (monacoRef.current = monaco) && setIsMonacoMounting(false)
       )
-      .catch(error =>
-        console.error(
-          "An error occurred during initialization of Monaco:",
-          error
-        )
-      );
+      .catch(error => {
+        console.error(error);
+        enqueueSnackbar("Error initializating Monaco Editor", {
+          variant: "error",
+          preventDuplicate: true,
+        });
+      });
 
     return () =>
       editorRef.current ? editorRef.current.dispose() : cancelable.cancel();
