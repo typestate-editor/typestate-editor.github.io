@@ -66,7 +66,7 @@ export default function Transformer<T>(props: TransformerProps<T>) {
         });
       } catch (error) {
         setData({
-          result: null,
+          result,
           error,
         });
         console.log("Caught:", error);
