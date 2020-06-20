@@ -111,7 +111,6 @@ const Editor = ({
 
   useUpdate(
     () => {
-      // editorRef.current.setValue(value);
       monacoRef.current!.editor.setModelLanguage(
         editorRef.current!.getModel()!,
         language

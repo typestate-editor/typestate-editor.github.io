@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import {
@@ -37,7 +37,6 @@ const renders = {
 };
 
 const useStyles = makeStyles(theme => ({
-  root: {},
   container: {
     paddingBottom: theme.spacing(16),
   },
@@ -53,30 +52,35 @@ export default () => {
         <div id={navItems[0][1]}></div>
         <Transformer
           title={navItems[0][0]}
+          language="plaintext"
           fn={transforms.view}
           render={renders.view}
         ></Transformer>
         <div id={navItems[1][1]}></div>
         <Transformer
           title={navItems[1][0]}
+          language="plaintext"
           fn={transforms.parse}
           render={renders.parse}
         ></Transformer>
         <div id={navItems[2][1]}></div>
         <Transformer
           title={navItems[2][0]}
+          language="json"
           fn={transforms.astToAutomaton}
           render={renders.astToAutomaton}
         ></Transformer>
         <div id={navItems[3][1]}></div>
         <Transformer
           title={navItems[3][0]}
+          language="json"
           fn={transforms.automatonToAst}
           render={renders.automatonToAst}
         ></Transformer>
         <div id={navItems[4][1]}></div>
         <Transformer
           title={navItems[4][0]}
+          language="json"
           fn={transforms.generator}
           render={renders.generator}
         ></Transformer>

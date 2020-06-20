@@ -31,6 +31,7 @@ const useStyles = makeStyles(theme => ({
 
 export type TransformerProps<T> = {
   title: string;
+  language: "plaintext" | "json";
   fn: (text: string) => T;
   render: (result: T) => JSX.Element;
 };
@@ -103,7 +104,7 @@ export default function Transformer<T>(props: TransformerProps<T>) {
         <MiniBar title={title} buttons={[["Do", getValue ? onDo : false]]} />
         <MonacoEditor
           theme="light"
-          language="plaintext"
+          language={props.language}
           onReady={getValue => setGetValue({ fn: getValue })}
           options={textEditorOpts}
           width={textareaSize.width}
