@@ -22,6 +22,7 @@ jobs:
     - run: yarn config set enableGlobalCache false
     - run: yarn install
     - run: yarn run build
+    - run: bash .github/gen_readme.sh
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
