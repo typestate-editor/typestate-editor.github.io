@@ -15,6 +15,6 @@ typestate CollectionProtocol {
 
   Unknown = {
     void put(Node): NonEmpty,
-    BooleanChoice isEmpty(): <TRUE: Empty, FALSE: NonEmpty>
+    boolean isEmpty(): <true: Empty, false: NonEmpty>
   }
 }

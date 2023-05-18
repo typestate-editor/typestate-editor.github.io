@@ -13,7 +13,7 @@ typestate DroneProtocol {
   Flying = {
     void moveTo(double, double): Flying,
     void stop(): Hovering,
-    Boolean hasArrived(): <True: Hovering, False: Flying>
+    boolean hasArrived(): <true: Hovering, false: Flying>
   }
 
 }
