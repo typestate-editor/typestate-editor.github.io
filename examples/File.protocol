@@ -5,7 +5,7 @@ typestate FileProtocol {
   }
 
   Open = {
-    Boolean hasNext(): <TRUE: Read, FALSE: Close>,
+    boolean eof(): <true: Close, false: Read>,
     void close(): end
   }
 
