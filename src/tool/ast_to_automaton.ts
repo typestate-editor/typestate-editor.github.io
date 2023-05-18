@@ -51,7 +51,7 @@ function checkState(automaton: Automaton, name: string, node: TNode) {
   }
 }
 
-function equalSignature(a: TMethodNode, b: TMethodNode) {
+function equalNameAndArgs(a: TMethodNode, b: TMethodNode) {
   if (a.name !== b.name) {
     return false;
   }
@@ -151,9 +151,9 @@ function compileState(
   for (let i = 0; i < node.methods.length; i++) {
     const method = node.methods[i];
     for (let j = 0; j < i; j++) {
-      if (equalSignature(method, node.methods[j])) {
+      if (equalNameAndArgs(method, node.methods[j])) {
         throw error(
-          `Duplicate method signature: ${method.name}(${method.args
+          `Duplicate method: ${method.name}(${method.args
             .map(a => a.string)
             .join(", ")})`,
           method.pos
