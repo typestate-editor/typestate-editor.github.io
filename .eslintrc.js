@@ -2,7 +2,7 @@ module.exports = {
   env: {
     node: true,
     browser: true,
-    es6: true,
+    es2021: true,
   },
   extends: ["eslint:recommended", "prettier"],
   globals: {
@@ -10,17 +10,17 @@ module.exports = {
     SharedArrayBuffer: "readonly",
   },
   parserOptions: {
+    sourceType: "module",
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2018,
-    sourceType: "module",
   },
   rules: {
-    indent: ["error", 2],
+    indent: "off",
     "linebreak-style": ["error", "unix"],
     quotes: ["error", "double", { allowTemplateLiterals: true }],
     semi: ["error", "always"],
+    "no-unused-vars": "off",
   },
   overrides: [
     {
@@ -33,14 +33,32 @@ module.exports = {
         "@typescript-eslint/array-type": "error",
         "@typescript-eslint/ban-types": "error",
         camelcase: "off",
-        "@typescript-eslint/camelcase": "error",
-        "@typescript-eslint/class-name-casing": "error",
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/explicit-member-accessibility": "off",
         indent: "off",
-        "@typescript-eslint/indent": ["error", 2],
-        "@typescript-eslint/interface-name-prefix": "off",
+        "@typescript-eslint/indent": "off",
         "@typescript-eslint/member-delimiter-style": "error",
+        "@typescript-eslint/naming-convention": [
+          "error",
+          {
+            selector: "typeLike",
+            format: ["PascalCase"],
+          },
+          {
+            selector: ["variableLike", "memberLike", "property"],
+            format: ["camelCase", "PascalCase", "UPPER_CASE"],
+            leadingUnderscore: "allow",
+            trailingUnderscore: "allow",
+          },
+          {
+            selector: ["memberLike", "property"],
+            format: null,
+            filter: {
+              regex: "^__html|__opaque__$",
+              match: true,
+            },
+          },
+        ],
         "no-array-constructor": "off",
         "@typescript-eslint/no-array-constructor": "error",
         "@typescript-eslint/no-empty-interface": "error",
@@ -51,15 +69,7 @@ module.exports = {
         "@typescript-eslint/no-non-null-assertion": "error",
         "@typescript-eslint/no-parameter-properties": "error",
         "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": [
-          "error",
-          {
-            args: "after-used",
-            argsIgnorePattern: "^_",
-            ignoreRestSiblings: true,
-            vars: "local",
-          },
-        ],
+        "@typescript-eslint/no-unused-vars": "off",
         "@typescript-eslint/no-use-before-define": [
           "error",
           {

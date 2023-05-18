@@ -1,8 +1,4 @@
-import { Optional, TImportNode, TPackageNode } from "./ast_nodes";
-
 export type Automaton = Readonly<{
-  package: Optional<TPackageNode>;
-  imports: readonly TImportNode[];
   states: Set<string>;
   choices: Set<string>;
   methods: AutomatonMethod[];

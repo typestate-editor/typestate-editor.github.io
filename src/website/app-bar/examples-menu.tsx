@@ -26,6 +26,7 @@ const examples = {
     "Drone",
     "File",
     "Iterator",
+    "DroppableIterator",
     "NodeA",
     "NodeB",
   ],

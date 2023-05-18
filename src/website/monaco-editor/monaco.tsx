@@ -106,7 +106,7 @@ class Monaco {
       try {
         registerTypestateLang(maybeMonaco);
         this.deferred.resolve(maybeMonaco);
-      } catch (err) {
+      } catch (err: any) {
         this.deferred.reject(err);
       }
       return true;

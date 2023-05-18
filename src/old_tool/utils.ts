@@ -1,4 +1,4 @@
-import type { Position } from "./ast_nodes";
+import type { Position } from "./tokenizer";
 
 export function positionToString(pos: Position) {
   return `${pos.line}:${pos.column}`;

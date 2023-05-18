@@ -1,17 +1,23 @@
-import type {
-  Typestate,
-  Identifier,
-  State,
-  DecisionState,
-  NamedState,
-  UnnamedState,
-  Destination,
-} from "./ast_types";
 import type { Automaton } from "./automaton_types";
-import { FAKE_LOC } from "./tokenizer";
+import {
+  FAKE_POS,
+  TDecisionStateNode,
+  TIdNode,
+  TMethodNode,
+  TStateNode,
+  TTypestateNode,
+  makeDecision,
+  makeDecisionState,
+  makeDeclaration,
+  makeId,
+  makeMethod,
+  makeState,
+  makeTypestate,
+} from "./ast_nodes";
+import { parseRef } from "./parse";
 
 function check(name: string, automaton: Automaton) {
-  if (/decision:/.test(name)) {
+  if (/^decision:/.test(name)) {
     if (automaton.choices.has(name)) {
       return;
     }
@@ -23,25 +29,21 @@ function check(name: string, automaton: Automaton) {
   throw new Error(`${name} is not in states set`);
 }
 
-function createIdentifier(name: string): Identifier {
-  return {
-    type: "Identifier",
-    name,
-    loc: FAKE_LOC,
-  };
+function createIdentifier(name: string): TIdNode {
+  return makeId(FAKE_POS, name);
 }
 
 function createLabelTransition(
   name: string,
   automaton: Automaton
-): Identifier | UnnamedState {
+): TIdNode | TStateNode {
   check(name, automaton);
 
-  if (/unknown:/.test(name)) {
+  if (/^unknown:/.test(name)) {
     return createUnnamedState(name, automaton);
   }
 
-  if (/decision:/.test(name)) {
+  if (/^decision:/.test(name)) {
     throw new Error(
       `Cannot have a transition from a decision state to ${name}`
     );
@@ -53,14 +55,14 @@ function createLabelTransition(
 function createMethodTransition(
   name: string,
   automaton: Automaton
-): Destination {
+): TIdNode | TStateNode | TDecisionStateNode {
   check(name, automaton);
 
-  if (/unknown:/.test(name)) {
+  if (/^unknown:/.test(name)) {
     return createUnnamedState(name, automaton);
   }
 
-  if (/decision:/.test(name)) {
+  if (/^decision:/.test(name)) {
     return createDecisionState(name, automaton);
   }
 
@@ -70,89 +72,81 @@ function createMethodTransition(
 function createDecisionState(
   name: string,
   automaton: Automaton
-): DecisionState {
-  const state: DecisionState = {
-    type: "DecisionState",
-    transitions: [],
-    _name: name,
-    loc: FAKE_LOC,
-  };
+): TDecisionStateNode {
+  const decisions = [];
 
   for (const transition of automaton.lTransitions) {
-    if (transition.from === state._name) {
-      state.transitions.push([
-        createIdentifier(transition.transition.name),
-        createLabelTransition(transition.to, automaton),
-      ]);
+    if (transition.from === name) {
+      decisions.push(
+        makeDecision(
+          FAKE_POS,
+          transition.transition.name,
+          createLabelTransition(transition.to, automaton)
+        )
+      );
     }
   }
 
-  return state;
+  return makeDecisionState(FAKE_POS, decisions);
 }
 
-function applyTransitions<T extends State>(state: T, automaton: Automaton): T {
+function createMethodTransitions(
+  fromName: string,
+  automaton: Automaton
+): readonly TMethodNode[] {
+  const methods = [];
   for (const transition of automaton.mTransitions) {
-    if (transition.from === state._name) {
-      state.methods.push({
-        type: "Method",
-        name: transition.transition.name,
-        arguments: transition.transition.arguments.map(createIdentifier),
-        returnType: createIdentifier(transition.transition.returnType),
-        transition: createMethodTransition(transition.to, automaton),
-        loc: FAKE_LOC,
-      });
+    if (transition.from === fromName) {
+      methods.push(
+        makeMethod(
+          FAKE_POS,
+          parseRef(transition.transition.returnType),
+          transition.transition.name,
+          transition.transition.arguments.map(parseRef),
+          createMethodTransition(transition.to, automaton)
+        )
+      );
     }
   }
-  return state;
+  return methods;
 }
 
-function createUnnamedState(name: string, automaton: Automaton): UnnamedState {
-  return applyTransitions(
-    {
-      type: "State",
-      name: null,
-      methods: [],
-      _name: name,
-      loc: FAKE_LOC,
-    },
-    automaton
+function createUnnamedState(name: string, automaton: Automaton): TStateNode {
+  return makeState(
+    FAKE_POS,
+    null,
+    createMethodTransitions(name, automaton),
+    automaton.final.has(name)
   );
 }
 
-function createNamedState(name: string, automaton: Automaton): NamedState {
-  return applyTransitions(
-    {
-      type: "State",
-      name,
-      methods: [],
-      _name: name,
-      loc: FAKE_LOC,
-    },
-    automaton
+function createNamedState(name: string, automaton: Automaton): TStateNode {
+  return makeState(
+    FAKE_POS,
+    name,
+    createMethodTransitions(name, automaton),
+    automaton.final.has(name)
   );
 }
 
 export default function automatonToAst(
   name: string,
   automaton: Automaton
-): Typestate {
-  const ast: Typestate = {
-    type: "Typestate",
-    name,
-    states: [],
-    loc: FAKE_LOC,
-  };
+): TTypestateNode {
+  const states = [];
 
   // Make sure the first state is the start
-  if (automaton.start !== "end") {
-    ast.states.push(createNamedState(automaton.start, automaton));
-  }
+  states.push(createNamedState(automaton.start, automaton));
 
   for (const state of automaton.states) {
     if (state !== "end" && state !== automaton.start && !/:/.test(state)) {
-      ast.states.push(createNamedState(state, automaton));
+      states.push(createNamedState(state, automaton));
     }
   }
 
-  return ast;
+  return makeTypestate(
+    automaton.package,
+    automaton.imports,
+    makeDeclaration(FAKE_POS, name, states)
+  );
 }

@@ -1,0 +1,23 @@
+typestate IteratorProtocol {
+  HasNext = {
+    boolean hasNext(): <true: Next, false: end>,
+    drop: end
+  }
+
+  Next = {
+    Object next(): Remove,
+    drop: end
+  }
+
+  Remove = {
+    void remove(): HasNext,
+    boolean hasNext(): <true: NextRemove, false: end>,
+    drop: end
+  }
+
+  NextRemove = {
+    void remove(): Next,
+    Object next(): Remove,
+    drop: end
+  }
+}

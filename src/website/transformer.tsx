@@ -69,7 +69,11 @@ export default function Transformer<T>(props: TransformerProps<T>) {
           result,
           error,
         });
-        console.log("Caught:", error);
+        if (error instanceof ErrorWithLocation) {
+          console.log(error.message);
+        } else {
+          console.log(error);
+        }
       }
     }
   }

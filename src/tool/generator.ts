@@ -1,58 +1,73 @@
-import type {
-  Typestate,
-  Identifier,
-  DecisionState,
-  NamedState,
-  Method,
-  DecisionTransition,
-  Destination,
-  UnnamedState,
-} from "./ast_types";
+import {
+  TDecisionNode,
+  TDecisionStateNode,
+  TIdNode,
+  TMethodNode,
+  TRefNode,
+  TStateNode,
+  TTypestateNode,
+} from "./ast_nodes";
 
-function generateIdentifier(identifier: Identifier): string {
-  return identifier.name;
+function generateRef(ref: TRefNode): string {
+  return ref.string;
 }
 
-function generateTransition(transition: Destination): string {
-  if (transition.type === "Identifier") {
-    return generateIdentifier(transition);
+function generateDestination(
+  dest: TIdNode | TStateNode | TDecisionStateNode
+): string {
+  if (dest.type === "id") {
+    return generateRef(dest);
   }
 
-  if (transition.type === "State") {
-    return generateUnnamedState(transition);
+  if (dest.type === "state") {
+    return generateUnnamedState(dest);
   }
 
-  return generateDecisionState(transition);
+  return generateDecisionState(dest);
 }
 
-function generateLabel([label, to]: DecisionTransition): string {
-  return `${generateIdentifier(label)}: ${generateTransition(to)}`;
+function generateLabel({ label, destination }: TDecisionNode): string {
+  return `${label}: ${generateDestination(destination)}`;
 }
 
-function generateDecisionState(state: DecisionState): string {
-  return `<${state.transitions.map(generateLabel).join(", ")}>`;
+function generateDecisionState(state: TDecisionStateNode): string {
+  return `<${state.decisions.map(generateLabel).join(", ")}>`;
 }
 
-function generateMethod(method: Method): string {
-  return `    ${generateIdentifier(method.returnType)} ${
-    method.name
-  }(${method.arguments
-    .map(generateIdentifier)
-    .join(", ")}): ${generateTransition(method.transition)}`;
+function generateMethod(method: TMethodNode): string {
+  return `    ${generateRef(method.returnType)} ${method.name}(${method.args
+    .map(generateRef)
+    .join(", ")}): ${generateDestination(method.destination)}`;
 }
 
-function generateUnnamedState(state: UnnamedState): string {
-  return `{\n${state.methods.map(generateMethod).join(",\n")}\n}`;
+function generateStateBody(state: TStateNode): string {
+  const transitions = state.methods.map(generateMethod);
+  if (state.isDroppable) {
+    transitions.push(`    drop: end`);
+  }
+  return `${transitions.join(",\n")}\n`;
 }
 
-function generateNamedState(state: NamedState): string {
-  return `  ${state.name} = {\n${state.methods
-    .map(generateMethod)
-    .join(",\n")}\n  }`;
+function generateUnnamedState(state: TStateNode): string {
+  return `{\n${generateStateBody(state)}    }`;
 }
 
-export default function generator(ast: Typestate): string {
-  return `typestate ${ast.name} {\n${ast.states
+function generateNamedState(state: TStateNode): string {
+  return `  ${state.name} = {\n${generateStateBody(state)}  }`;
+}
+
+export default function generator(ast: TTypestateNode): string {
+  let prefix = "";
+  if (ast.pkg) {
+    prefix += `package ${generateRef(ast.pkg.ref)};\n`;
+  }
+  for (const { ref, staticc, star } of ast.imports) {
+    prefix += `import ${staticc ? "static " : ""}${generateRef(ref)}${
+      star ? ".*" : ""
+    };\n`;
+  }
+
+  return `typestate ${ast.decl.name} {\n${ast.decl.states
     .map(generateNamedState)
     .join("\n")}\n}\n`;
 }

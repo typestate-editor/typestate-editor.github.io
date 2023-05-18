@@ -1,6 +1,6 @@
 typestate IteratorProtocol {
   HasNext = {
-    BooleanEnum hasNext(): <TRUE: Next, FALSE: end>
+    boolean hasNext(): <true: Next, false: end>
   }
 
   Next = {
@@ -9,7 +9,7 @@ typestate IteratorProtocol {
 
   Remove = {
     void remove(): HasNext,
-    BooleanEnum hasNext(): <TRUE: NextRemove, FALSE: end>
+    boolean hasNext(): <true: NextRemove, false: end>
   }
 
   NextRemove = {

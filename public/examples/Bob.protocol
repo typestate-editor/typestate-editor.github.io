@@ -15,6 +15,6 @@ typestate BobProtocol {
   }
 
   EndProtocol = {
-    void endCommunication() : {}
+    void endCommunication() : end
   }
 }
