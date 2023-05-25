@@ -13,7 +13,7 @@ function createNetwork(automaton: Automaton, container: HTMLDivElement) {
 
   const invisible = ":invisible:";
 
-  const nodes: any /*: vis.Node[]*/ = [
+  const nodes: any[] /*: vis.Node[]*/ = [
     {
       id: invisible,
       size: 0,
@@ -22,10 +22,11 @@ function createNetwork(automaton: Automaton, container: HTMLDivElement) {
         border: "rgba(0,0,0,0)",
         background: "rgba(0,0,0,0)",
       },
+      label: "",
     },
   ];
 
-  const edges: any /*: vis.Edge[]*/ = [
+  const edges: any[] /*: vis.Edge[]*/ = [
     {
       from: invisible,
       to: automaton.start,
@@ -33,6 +34,7 @@ function createNetwork(automaton: Automaton, container: HTMLDivElement) {
         color: "#848484",
       },
       arrows: "to",
+      label: "",
     },
   ];
 
@@ -72,6 +74,16 @@ function createNetwork(automaton: Automaton, container: HTMLDivElement) {
     });
   }
 
+  const maxNodeLabelSize = nodes.reduce(
+    (acc: number, node: any) => Math.max(node.label.length, acc),
+    0
+  );
+
+  const maxEdgeLabelSize = edges.reduce(
+    (acc: number, edge: any) => Math.max(edge.label.length, acc),
+    0
+  );
+
   const data /*: { nodes: vis.DataSet; edges: vis.DataSet }*/ = {
     nodes: new DataSet(nodes),
     edges: new DataSet(edges),
@@ -95,7 +107,8 @@ function createNetwork(automaton: Automaton, container: HTMLDivElement) {
       enabled: true,
       solver: "repulsion",
       repulsion: {
-        springLength: 220,
+        centralGravity: 0,
+        springLength: maxEdgeLabelSize * 5 + maxNodeLabelSize * 5 + 100,
       },
     },
   };
@@ -125,8 +138,8 @@ const useStyles = makeStyles(() => ({
     display: "block",
   },
   container: {
-    width: "650px",
-    height: "550px",
+    width: "700px",
+    height: "700px",
     border: "1px solid lightgray",
   },
   hide: {

@@ -6,8 +6,8 @@ import MiniBar from "./mini-bar";
 import MonacoEditor, { EditorProps } from "./monaco-editor";
 
 const textareaSize = {
-  width: "500px",
-  height: "550px",
+  width: "550px",
+  height: "700px",
 } as const;
 
 const useStyles = makeStyles(theme => ({

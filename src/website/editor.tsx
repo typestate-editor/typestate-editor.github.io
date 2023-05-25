@@ -48,7 +48,7 @@ export default () => {
   return (
     <SnackbarProvider>
       <AppBar />
-      <Container className={classes.container}>
+      <Container maxWidth={false} className={classes.container}>
         <div id={navItems[0][1]}></div>
         <Transformer
           title={navItems[0][0]}
