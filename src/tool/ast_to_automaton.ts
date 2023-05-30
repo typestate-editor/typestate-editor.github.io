@@ -156,7 +156,8 @@ function compileState(
           `Duplicate method: ${method.name}(${method.args
             .map(a => a.string)
             .join(", ")})`,
-          method.pos
+          method.pos,
+          method.destination.pos
         );
       }
     }

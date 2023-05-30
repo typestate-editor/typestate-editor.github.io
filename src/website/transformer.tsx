@@ -4,6 +4,7 @@ import { ErrorWithLocation } from "../tool/utils";
 import { MonacoLanguages } from "./languages";
 import MiniBar from "./mini-bar";
 import MonacoEditor, { EditorProps } from "./monaco-editor";
+import type { MonacoOptions } from "./monaco-editor/monaco";
 
 const textareaSize = {
   width: "550px",
@@ -39,11 +40,11 @@ export type TransformerProps<T> = {
 
 type Data<T> = { result: T | null; error: any };
 
-const textEditorOpts = {
+const textEditorOpts: MonacoOptions = {
   minimap: {
     enabled: false,
   },
-} as const;
+};
 
 export default function Transformer<T>(props: TransformerProps<T>) {
   const classes = useStyles();
